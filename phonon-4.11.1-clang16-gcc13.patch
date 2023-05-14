@@ -1,0 +1,78 @@
+diff -up phonon-master/phonon/experimental/backendcapabilities.cpp.1~ phonon-master/phonon/experimental/backendcapabilities.cpp
+--- phonon-master/phonon/experimental/backendcapabilities.cpp.1~	2023-04-30 04:31:52.000000000 +0200
++++ phonon-master/phonon/experimental/backendcapabilities.cpp	2023-05-15 01:41:45.811532677 +0200
+@@ -23,6 +23,9 @@
+ #include "../backendcapabilities.h"
+ #include "globalconfig.h"
+ 
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wenum-constexpr-conversion"
++
+ namespace Phonon
+ {
+ namespace Experimental
+@@ -45,3 +48,5 @@ QList<VideoCaptureDevice> BackendCapabil
+ 
+ } // namespace Experimental
+ } // namespace Phonon
++
++#pragma GCC diagnostic pop
+diff -up phonon-master/phonon/experimental/objectdescription.h.1~ phonon-master/phonon/experimental/objectdescription.h
+--- phonon-master/phonon/experimental/objectdescription.h.1~	2023-04-30 04:31:52.000000000 +0200
++++ phonon-master/phonon/experimental/objectdescription.h	2023-05-15 01:41:45.812532686 +0200
+@@ -25,6 +25,9 @@
+ 
+ #include "../objectdescription.h"
+ 
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wenum-constexpr-conversion"
++
+ namespace Phonon
+ {
+ namespace Experimental
+@@ -55,4 +58,6 @@ Phonon::VideoCaptureDevice phononExperim
+ } // namespace Experimental
+ } // namespace Phonon
+ 
++#pragma GCC diagnostic pop
++
+ #endif // PHONON_EXPERIMENTAL_OBJECTDESCRIPTION_H
+diff -up phonon-master/phonon/experimental/visualization.h.1~ phonon-master/phonon/experimental/visualization.h
+--- phonon-master/phonon/experimental/visualization.h.1~	2023-04-30 04:31:52.000000000 +0200
++++ phonon-master/phonon/experimental/visualization.h	2023-05-15 01:41:45.812532686 +0200
+@@ -30,6 +30,9 @@
+ #include "../objectdescriptionmodel.h"
+ #include "../medianode.h"
+ 
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wenum-constexpr-conversion"
++
+ namespace Phonon
+ {
+ class AudioPath;
+@@ -103,5 +106,7 @@ class PHONONEXPERIMENTAL_EXPORT Visualiz
+ } // namespace Experimental
+ } // namespace Phonon
+ 
++#pragma GCC diagnostic pop
++
+ #endif // PHONON_VISUALIZATION_H
+ // vim: sw=4 ts=4 tw=80
+diff -up phonon-master/phonon/objectdescription.h.1~ phonon-master/phonon/objectdescription.h
+--- phonon-master/phonon/objectdescription.h.1~	2023-04-30 04:31:52.000000000 +0200
++++ phonon-master/phonon/objectdescription.h	2023-05-15 01:42:02.374686122 +0200
+@@ -32,6 +32,8 @@
+ #include <QString>
+ #include <QVariant>
+ 
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wenum-constexpr-conversion"
+ 
+ namespace Phonon
+ {
+@@ -390,4 +392,5 @@ Q_DECLARE_METATYPE(Phonon::DeviceAccessL
+ 
+ 
+ 
++#pragma GCC diagnostic pop
+ #endif // PHONON_OBJECTDESCRIPTION_H
