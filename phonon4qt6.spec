@@ -4,8 +4,7 @@
 Summary:	Plasma Multimedia Framework
 Name:		phonon4qt6
 Version:	4.11.2
-Release:	10
-Epoch:		2
+Release:	%{?git:0.%{git}.}1
 License:	LGPLv2+
 Group:		Graphical desktop/KDE
 Url:		https://invent.kde.org/libraries/phonon
@@ -25,6 +24,9 @@ BuildRequires:	pkgconfig(Qt6Widgets)
 BuildRequires:	pkgconfig(Qt6Quick)
 BuildRequires:	pkgconfig(Qt6UiTools)
 BuildRequires:	pkgconfig(Qt6Quick)
+BuildRequires:  cmake(Qt6Designer)
+BuildRequires:  cmake(Qt6LinguistTools)
+BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	cmake(ECM)
