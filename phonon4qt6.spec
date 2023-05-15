@@ -4,7 +4,7 @@
 Summary:	Plasma Multimedia Framework
 Name:		phonon4qt6
 Version:	4.11.2
-Release:	%{?git:0.%{git}.}1
+Release:	%{?git:0.%{git}.}2
 License:	LGPLv2+
 Group:		Graphical desktop/KDE
 Url:		https://invent.kde.org/libraries/phonon
@@ -34,8 +34,9 @@ BuildRequires:	cmake(ECM)
 %description
 Phonon is the Plasma Multimedia Framework.
 
-%files -f %{name}.lang
-%{_bindir}/phononsettings
+%files 
+# -f %{name}.lang
+%{_bindir}/phononsettings6
 
 #--------------------------------------------------------------------
 
@@ -108,7 +109,12 @@ Header files needed to compile applications for KDE.
 %install
 %ninja_install -C build
 
-find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
-    L=$(echo $r |rev |cut -d/ -f3 |rev)
-    echo "%%lang($L) %%{_datadir}/locale/$L/LC_MESSAGES/$(basename $r)" >>%{name}.lang
-done
+# FIXME: phononsettings conflicts with qt5 phonon
+mv %{buildroot}%{_bindir}/phononsettings %{buildroot}%{_bindir}/phononsettings6
+
+# FIXME: Translations conflict with qt5 phonon...
+rm -rf %{buildroot}%{_datadir}/locale
+#find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
+#    L=$(echo $r |rev |cut -d/ -f3 |rev)
+#    echo "%%lang($L) %%{_datadir}/locale/$L/LC_MESSAGES/$(basename $r)" >>%{name}.lang
+#done
