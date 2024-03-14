@@ -1,17 +1,17 @@
 %define major 4
-%define git 20230616
+#define git 20230616
 
 Summary:	Plasma Multimedia Framework
 Name:		phonon4qt6
-Version:	4.11.2
-Release:	%{?git:0.%{git}.}2
+Version:	4.12.0
+Release:	%{?git:0.%{git}.}1
 License:	LGPLv2+
 Group:		Graphical desktop/KDE
 Url:		https://invent.kde.org/libraries/phonon
 %if 0%{?git:1}
 Source0:	https://invent.kde.org/libraries/phonon/-/archive/master/phonon-master.tar.bz2#/phonon-%{git}.tar.bz2
 %else
-Source0:	http://download.kde.org/stable/phonon/%{version}/%{name}-%{version}.tar.xz
+Source0:	http://download.kde.org/stable/phonon/%{version}/phonon-%{version}.tar.xz
 %endif
 Patch0:		phonon-4.11.1-clang16-gcc13.patch
 BuildRequires:	imagemagick
@@ -81,8 +81,6 @@ Requires:	%{libphonon4qt6} = %{EVRD}
 Header files needed to compile applications for KDE.
 
 %files -n phonon4qt6-devel
-%{_libdir}/qt6/mkspecs/modules/qt_phonon4qt6.pri
-%{_datadir}/phonon4qt6/buildsystem/
 %{_includedir}/phonon4qt6/
 %{_libdir}/libphonon4qt6.so
 %{_libdir}/libphonon4qt6experimental.so
@@ -91,12 +89,25 @@ Header files needed to compile applications for KDE.
 
 #--------------------------------------------------------------------
 
+%package -n phonon4qt6-designer-plugin
+Summary:        Phonon Designer Plugin
+Group:          System/Libraries
+
+%description -n phonon4qt6-designer-plugin
+Designer plugin for phonon for Qt 6.
+
+%files -n phonon4qt6-designer-plugin
+%{_libdir}/qt6/plugins/designer/phonon4qt6widgets.so
+#--------------------------------------------------------------------
+
+
 %prep
 %autosetup -p1 -n phonon-%{?git:master}%{!?git:%{version}}
 
 %build
 %cmake \
-	-DQT_MAJOR_VERSION=6 \
+	-DPHONON_BUILD_QT5=OFF \
+	-DPHONON_BUILD_QT6=ON \
 	-DCMAKE_BUILD_TYPE:STRING="Release" \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
 	-DWITH_PulseAudio=ON \
