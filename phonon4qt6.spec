@@ -4,7 +4,7 @@
 Summary:	Plasma Multimedia Framework
 Name:		phonon4qt6
 Version:	4.12.0
-Release:	%{?git:0.%{git}.}2
+Release:	%{?git:0.%{git}.}3
 License:	LGPLv2+
 Group:		Graphical desktop/KDE
 Url:		https://invent.kde.org/libraries/phonon
